@@ -7,7 +7,7 @@
     <ignored path="gjc9620.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="8de5a599-da4a-4404-93d0-4827bf0b2809" time="1438592654838" ignored="false" />
-    <file path="/indx.html" changelist="8de5a599-da4a-4404-93d0-4827bf0b2809" time="1438592702056" ignored="false" />
+    <file path="/indx.html" changelist="8de5a599-da4a-4404-93d0-4827bf0b2809" time="1438594152548" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +30,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="40" selection-start="60" selection-end="60" vertical-scroll-proportion="0.043742407">
+            <state line="15" column="26" selection-start="246" selection-end="246" vertical-scroll-proportion="0.32806805">
               <folding />
             </state>
           </provider>
@@ -247,7 +247,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="40" selection-start="60" selection-end="60" vertical-scroll-proportion="0.043742407">
+        <state line="15" column="26" selection-start="246" selection-end="246" vertical-scroll-proportion="0.32806805">
           <folding />
         </state>
       </provider>
