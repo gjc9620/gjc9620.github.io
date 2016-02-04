@@ -1,4 +1,111 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D</title>
+</head>
+<style>
+    html,body{
+        height: 100%;
+        background: #000;
+        margin: 0px;
+        padding: 0px;
+    }
+    .back{
+        box-shadow: 0 1px 3px rgba(0,0,0,.5);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) ;
+        width: 30%;
+        height: 30%;
+        text-align: center;
+        perspective: 400px;
+    }
+
+    .container{
+        width: 128px;
+        height: 100px;
+        transition: transform 1s;
+        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        border: 1px white solid;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-top: -50px;
+        margin-left: -64px;
+    }
+    img{
+        position: absolute;
+        width: 100px;
+        top: 50%;
+        left: 50%;
+        bottom: 0px;
+
+
+    }
+    .goTop{
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        height: 20%;
+    }
+    .goBottom{
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 20%;
+    }
+</style>
+<body>
+<section class="back">
+    <section id="go" class="container">
+        <img src="1.jpg">
+        <img src="2.jpg">
+        <img src="3.jpg">
+        <img src="1.jpg">
+        <img src="2.jpg">
+        <img src="3.jpg">
+        <img src="1.jpg">
+        <img src="2.jpg">
+        <img src="3.jpg">
+        <img src="1.jpg">
+    </section>
+</section>
+<section id="goTop" class="goTop"> </section>
+<section id="goBottom" class="goBottom"> </section>
+</body>
+</html>
+<script>
+    var imgs = document.getElementsByTagName("img");
+    imgs = [].slice.call(imgs);
+    var deg = 0;
+    imgs.forEach((v, i, a)=>{
+        v.style.transform = "translate(-50%,-50%) rotateY("+deg+"deg)  translateZ(250px)";
+    deg += 36;
+    });
+    var ry = 0;
+    var rx = 0;
+    document.getElementById("go").onclick = (event)=>{
+        ry += 36;
+        document.getElementById("go").style.transform = "rotateY("+ ry +"deg) rotateX("+ rx +"deg) rotateZ(0deg)";
+    };
+
+    document.getElementById("goTop").onclick = (event)=>{
+        rx += 10;
+        document.getElementById("go").style.transform = "rotateY("+ ry +"deg) rotateX("+ rx +"deg) rotateZ(0deg)";
+    };
+    document.getElementById("goBottom").onclick = (event)=>{
+        rx -= 10;
+        document.getElementById("go").style.transform = "rotateY("+ ry +"deg) rotateX("+ rx +"deg) rotateZ(0deg)";
+    };
+
+</script>
+
+
+<!-- boy
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -25,7 +132,7 @@
         <img id="i1" src="1451884090966.png"/>
     </div>
 </body>
-</html>
+</html>-->
 
 
 
