@@ -16,19 +16,26 @@
         position: absolute;
         top: 50%;
         left: 50%;
+        -webkit-transform: translate(-50%,-50%) ;
         transform: translate(-50%,-50%) ;
         width: 30%;
         height: 30%;
         text-align: center;
+        -webkit-perspective: 400px;
         perspective: 400px;
     }
 
     .container{
         width: 128px;
         height: 100px;
+        -webkit-transition: transform 1s;
+        -webkit-transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+        -webkit-transform-style: preserve-3d;
+
         transition: transform 1s;
         transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
         transform-style: preserve-3d;
+
         /*border: 1px white solid;*/
         position: absolute;
         left: 50%;
