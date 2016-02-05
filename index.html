@@ -81,24 +81,36 @@
     var imgs = document.getElementsByTagName("img");
     imgs = [].slice.call(imgs);
     var deg = 0;
-    imgs.forEach((v, i, a)=>{
+    imgs.forEach(function(v, i, a) {
+        v.style.webkitTransform = "translate(-50%,-50%) rotateY("+deg+"deg)  translateZ(250px)";
+        v.style.oTransform = "translate(-50%,-50%) rotateY("+deg+"deg)  translateZ(250px)";
+        v.style.msTransform = "translate(-50%,-50%) rotateY("+deg+"deg)  translateZ(250px)";
         v.style.transform = "translate(-50%,-50%) rotateY("+deg+"deg)  translateZ(250px)";
         deg += 36;
     });
+
     var ry = 0;
     var rx = 0;
-    document.getElementById("go").onclick = (event)=>{
+    function change(){
+        var go = document.getElementById("go");
+        var transform = "rotateY("+ ry +"deg) rotateX("+ rx +"deg) rotateZ(0deg)"
+        go.style.webkitTransform = transform;
+        go.style.oTransform = transform;
+        go.style.msTransform = transform;
+        go.style.transform = transform;
+    }
+    document.getElementById("go").onclick = function (event){
         ry += 36;
-        document.getElementById("go").style.transform = "rotateY("+ ry +"deg) rotateX("+ rx +"deg) rotateZ(0deg)";
+        change();
     };
 
-    document.getElementById("goTop").onclick = (event)=>{
+    document.getElementById("goTop").onclick = function (event){
         rx += 10;
-        document.getElementById("go").style.transform = "rotateY("+ ry +"deg) rotateX("+ rx +"deg) rotateZ(0deg)";
+        change();
     };
-    document.getElementById("goBottom").onclick = (event)=>{
+    document.getElementById("goBottom").onclick = function (event){
         rx -= 10;
-        document.getElementById("go").style.transform = "rotateY("+ ry +"deg) rotateX("+ rx +"deg) rotateZ(0deg)";
+        change();
     };
 
 </script>
