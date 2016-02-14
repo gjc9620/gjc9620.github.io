@@ -39,8 +39,8 @@
         -webkit-transform-style: preserve-3d;
         transform: rotateY(0deg) rotateZ(0deg)  translateZ(-90px);
         transform-style: preserve-3d;
-        -webkit-transition: transform 10s linear;
-        transition: transform 10s linear;
+        /*-webkit-transition: transform 10s linear;*/
+        transition: transform 3s linear;
 
     }
     #d1{
@@ -109,8 +109,9 @@
         warp.style.webkitTransform = "-webkit-rotateY("+z+"deg) rotateZ("+x+"deg)  translateZ(-90px)";
         warp.style.transform = "rotateY("+z+"deg) rotateZ("+x+"deg)  translateZ(-90px)";
     }
+//    go();
     setTimeout(go,1)
-    setInterval(go,10000)
+    setInterval(go,3000)
 
 </script>
 
