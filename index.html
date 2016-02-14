@@ -101,17 +101,19 @@
 </body>
 </html>
 <script>
-
-    var warp = document.getElementById("wrap"), x=0, z=0;
-    function go(){
-        z+=400;
-        x+=600;
-        warp.style.webkitTransform = "-webkit-rotateY("+z+"deg) rotateZ("+x+"deg)  translateZ(-90px)";
-        warp.style.transform = "rotateY("+z+"deg) rotateZ("+x+"deg)  translateZ(-90px)";
+    window.onload = function(){
+        var warp = document.getElementById("wrap"), x=0, z=0;
+        function go(){
+            z+=400;
+            x+=600;
+            warp.style.webkitTransform = "-webkit-rotateY("+z+"deg) rotateZ("+x+"deg)  translateZ(-90px)";
+            warp.style.transform = "rotateY("+z+"deg) rotateZ("+x+"deg)  translateZ(-90px)";
+        setTimeout(go,3000)
+        }
+        go();
     }
-//    go();
-    setTimeout(go,1)
-    setInterval(go,3000)
+
+
 
 </script>
 
