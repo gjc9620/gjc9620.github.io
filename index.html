@@ -2,6 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>nesting</title>
+</head>
+<style>
+    .center{
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        top: 0px;
+        margin: auto;
+    }
+    html,body{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+    }
+    .wall{
+        width: 180px;
+        height: 180px;
+    }
+    #wrap{
+        width: 200px;
+        height:200px;
+        transform: rotateY(0deg) rotateZ(0deg)  translateZ(-90px);
+        transform-style: preserve-3d;
+
+    }
+    #d1{
+        background: red;
+    }
+    #d2{
+        background: blue;
+        transform-origin: 0 50%;
+        transform: rotateY(-90deg);
+    }
+    #d3{
+        background: pink;
+        transform-origin: 100% 0;
+        transform: rotateY(90deg);
+    }
+    #d4{
+        background: darkgreen;
+        transform-origin: 50% 0;
+        transform: rotateX(90deg);
+    }
+    #d5{
+        background: gold;
+        transform-origin: 50% 100%;
+        transform: rotateX(-90deg);
+    }
+    #d6{
+        background: firebrick;
+        transform-origin: 50% 50%;
+        transform: translateZ(180px);
+    }
+
+</style>
+<body >
+<div id="wrap" >
+    <div id="d1" class="wall center"> </div>
+    <div id="d2" class="wall center"> </div>
+    <div id="d3" class="wall center"> </div>
+    <div id="d4" class="wall center"> </div>
+    <div id="d5" class="wall center"> </div>
+    <div id="d6" class="wall center"></div>
+</div>
+</body>
+</html>
+<script>
+    var warp = document.getElementById("wrap"), x=0, z=0;
+    setInterval(function(){
+        warp.style.transform = "rotateY("+z+"deg) rotateZ("+x+"deg)  translateZ(-90px)";
+        z+=2;
+        x+=3;
+    },20)
+
+</script>
+
+<!-- banner
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <title>3D</title>
 </head>
 <style>
@@ -121,6 +208,7 @@
     };
 
 </script>
+-->
 
 
 <!-- boy
