@@ -19,7 +19,7 @@
         display: -webkit-flex;
         display: flex;
         justify-content: center;
-        align-items: center; 
+        align-items: center;
         -webkit-perspective: 1000px;
         perspective: 1000px;
         -webkit-transform-style: preserve-3d;
@@ -34,9 +34,10 @@
         height:200px;
         -webkit-transform: rotateY(0deg) rotateZ(0deg)  translateZ(-90px);
         -webkit-transform-style: preserve-3d;
-
         transform: rotateY(0deg) rotateZ(0deg)  translateZ(-90px);
         transform-style: preserve-3d;
+        -webkit-transition: transform 10s linear;
+        transition: transform 10s linear;
 
     }
     #d1{
@@ -97,13 +98,16 @@
 </body>
 </html>
 <script>
+
     var warp = document.getElementById("wrap"), x=0, z=0;
-    setInterval(function(){
+    function go(){
+        z+=400;
+        x+=600;
+        warp.style.webkitTransform = "-webkit-rotateY("+z+"deg) rotateZ("+x+"deg)  translateZ(-90px)";
         warp.style.transform = "rotateY("+z+"deg) rotateZ("+x+"deg)  translateZ(-90px)";
-        warp.style.transform = "-webkit-rotateY("+z+"deg) rotateZ("+x+"deg)  translateZ(-90px)";
-        z+=2;
-        x+=3;
-    },20)
+    }
+    go();
+    setInterval(go,10000)
 
 </script>
 
