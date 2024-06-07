@@ -19,6 +19,7 @@ const createId = (function (params) {
   }
 })();
 
+//最好的方式应该是适用 left 和 right而不是适用百分比，百分比有小数精度问题
 const Main = ()=>{
   const [isChangeSizing, setIsChangeSizing] = useState(false);
   const [changingSizingInfo, setChangingSizingInfo] = useState();
@@ -56,7 +57,9 @@ const Main = ()=>{
 
   const chipStartOnMouseDown = (event)=>{
     const isActionMainStartHandle = !!+event.target.getAttribute(isMainStartHandle) ;
-    if(isActionMainStartHandle){
+    const isActionMainEndHandle = !!+event.target.getAttribute(isMainEndHandle) ;
+
+    if(isActionMainStartHandle || isActionMainEndHandle){
       const currTrackId = event.target.getAttribute(trackId) ;
       const currChipId = event.target.getAttribute(chipId) ;
       setIsChangeSizing(true);
@@ -65,58 +68,81 @@ const Main = ()=>{
       setChangingSizingInfo({
         trackId: currTrackId,
         chipId: currChipId,
-        handleDirection: 'start',
+        handleDirection: isActionMainStartHandle? 'start': 'end',
         originData: tracks.find((v)=>v.id === currChipId? v.chips.find(c=>c.id === currChipId): false),
         x: $currChip.getBoundingClientRect().x,
         right: $currChip.getBoundingClientRect().right,
       })
     }
-    const isActionMainEndHandle = !!+event.target.getAttribute(isMainEndHandle) ;
+   
   }
 
   const chipStartOnMouseMove = (event)=>{
     //性能优化的地方 查找 dom 与原生动画而不是 state 驱动
     if(isChangeSizing){
-      const { trackId: currTrackId, chipId: currChipId, originData, x, right } = changingSizingInfo;
-      const $currSizingChipEndHandle = document.querySelector(`*[${isMainEndHandle}="1"][${trackId}="${currTrackId}"][${chipId}="${currChipId}"]`);
-      if(event.pageX > $currSizingChipEndHandle.getBoundingClientRect().x){
-        return
-      }else {
-        const $currTrack = document.querySelector(`*[is-track="1"][${trackId}="${currTrackId}"]`);
-        const $currChip = document.querySelector(`*[is-chip="1"][${trackId}="${currTrackId}"][${chipId}="${currChipId}"]`);
-        //可缓存 dom
-        const currTrackClientRect = $currTrack.getBoundingClientRect();
-        const currChipClientRect = $currChip.getBoundingClientRect();
-        const nextStartPx = (event.pageX - currTrackClientRect.x);
-        const nextWidthPerent = (right - event.pageX) / currTrackClientRect.width;
-        console.log(right - event.pageX);
-        const nextStartPercent = nextStartPx / currTrackClientRect.width;
-        // const nextWidthPerent = (currChipClientRect.x + currChipClientRect.width - event.pageX) / currTrackClientRect.width;
-        // console.log(nextWidthPerent * 100 + '%');
-        // console.log(currChipClientRect.x, currChipClientRect.width , event.pageX);
-        // console.log(currTrackClientRect.width);
-        const newTracks = tracks.map((t)=>{
-          if(t.id === +currTrackId){
-
-            return {
-              ...t,
-              chips: t.chips.map((c)=>{
-                if(c.id === +currChipId){
-                  return {
-                    ...c,
-                    start: nextStartPercent * 100,
-                    width: nextWidthPerent * 100,
-                  }
-                } 
-                return c
-              })
+      const { handleDirection, trackId: currTrackId, chipId: currChipId, originData, x, right } = changingSizingInfo;
+      if(handleDirection === 'start') {
+        const $currSizingChipEndHandle = document.querySelector(`*[${isMainEndHandle}="1"][${trackId}="${currTrackId}"][${chipId}="${currChipId}"]`);
+        if(event.pageX > $currSizingChipEndHandle.getBoundingClientRect().x - handleWidth){
+          //遇到了 end
+          return
+        }else {
+          //可优化为缓存 dom
+          const $currTrack = document.querySelector(`*[is-track="1"][${trackId}="${currTrackId}"]`);
+          const currTrackClientRect = $currTrack.getBoundingClientRect();
+          const nextWidthPerent = (right - event.pageX) / currTrackClientRect.width;
+          const nextStartPercent = (event.pageX - currTrackClientRect.x) / currTrackClientRect.width; 
+          const newTracks = tracks.map((t)=>{
+            if(t.id === +currTrackId){
+              return {
+                ...t,
+                chips: t.chips.map((c)=>{
+                  if(c.id === +currChipId){
+                    return {
+                      ...c,
+                      start: nextStartPercent * 100,
+                      width: nextWidthPerent * 100,
+                    }
+                  } 
+                  return c
+                })
+              }
             }
-          }
-          return t
-        });
-        setTrack(newTracks)
+            return t
+          });
+          setTrack(newTracks)
+        }
+        return
       }
-      // if()
+      if(handleDirection === 'end'){
+        const $currSizingChipEndHandle = document.querySelector(`*[${isMainEndHandle}="1"][${trackId}="${currTrackId}"][${chipId}="${currChipId}"]`);
+        if(event.pageX < x + handleWidth){
+          return
+        }else {
+          const $currTrack = document.querySelector(`*[is-track="1"][${trackId}="${currTrackId}"]`);
+          const currTrackClientRect = $currTrack.getBoundingClientRect();
+          const nextWidth = (event.pageX - x) / currTrackClientRect.width;
+          console.log(event.pageX, x, currTrackClientRect.width);
+          const newTracks = tracks.map((t)=>{
+            if(t.id === +currTrackId){
+              return {
+                ...t,
+                chips: t.chips.map((c)=>{
+                  if(c.id === +currChipId){
+                    return {
+                      ...c,
+                      width: nextWidth * 100,
+                    }
+                  } 
+                  return c
+                })
+              }
+            }
+            return t
+          });
+          setTrack(newTracks)
+        }
+      }
     }
   }
   
