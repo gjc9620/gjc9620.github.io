@@ -1,0 +1,9 @@
+.left-bar {
+  height: 100%
+}
+
+.left-bar-chip {
+  margin-bottom: 40px;
+  height: 40px;
+  width: 40px;
+}

@@ -1,0 +1,47 @@
+.main-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+} 
+
+.main-panel {
+  flex: 1;
+}
+
+.main-track-wraper {
+  /* height: 50px;  
+  border: 1px black solid;
+  position: relative; */
+}
+
+.main-track {
+  height: 50px;  
+  border: 1px black solid;
+  position: relative;
+}
+
+.main-chip {
+  height: 100%;
+  position: absolute;
+  /* transition: left,width 100ms; */
+}
+
+.main-start-handle {
+  height: 100%;
+  background-color: mediumaquamarine;
+  cursor: col-resize;
+}
+
+.main-end-handle {
+  cursor: col-resize;
+  height: 100%;
+  background-color: mediumaquamarine;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.main-gap {
+  height: 30px;
+}
