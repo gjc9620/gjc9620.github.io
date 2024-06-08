@@ -3,9 +3,7 @@ import LeftBar from '../LeftBar/LeftBar';
 
 import './Main.css';
 
-
 const handleWidth = 10;
-const chipMinWidth = handleWidth * 2;
 const isMainStartHandle = 'main-start-handle';
 const isMainEndHandle = 'main-end-handle';
 const trackId = 'track-id';
