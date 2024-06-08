@@ -7,6 +7,13 @@
 
 .main-panel {
   flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-panel-gap-tb {
+  flex: 1;
 }
 
 .main-track-wraper {
@@ -24,13 +31,21 @@
 .main-chip {
   height: 100%;
   position: absolute;
+  display: flex;
   /* transition: left,width 100ms; */
+}
+
+.main-content {
+  flex: 1;
 }
 
 .main-start-handle {
   height: 100%;
   background-color: mediumaquamarine;
   cursor: col-resize;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .main-end-handle {
