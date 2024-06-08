@@ -3,7 +3,7 @@ import LeftBar from '../LeftBar/LeftBar';
 
 import './Main.css';
 
-const handleWidth = 10;
+const handleWidth = 4;
 const isMainStartHandle = 'main-start-handle';
 const isMainEndHandle = 'main-end-handle';
 const trackId = 'track-id';
@@ -57,7 +57,7 @@ const initTracks = [
   }
 ]
 
-//最好的方式应该是适用 left 和 right而不是适用百分比，百分比有小数精度问题
+//最好的方式应该是适用 left 和 right而不是适用百分比，百分比有小数精度问题, 可以改进 
 const Main = ()=>{
   const [isChangeSizing, setIsChangeSizing] = useState(false);
   const [changingSizingInfo, setChangingSizingInfo] = useState();
