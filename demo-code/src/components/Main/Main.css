@@ -42,19 +42,13 @@
 .main-start-handle {
   height: 100%;
   background-color: mediumaquamarine;
-  cursor: col-resize;
-  /* position: absolute;
-  top: 0;
-  left: 0; */
+  cursor: col-resize; 
 }
 
 .main-end-handle {
   cursor: col-resize;
   height: 100%;
-  background-color: mediumaquamarine;
-  /* position: absolute;
-  top: 0;
-  right: 0; */
+  background-color: mediumaquamarine; 
 }
 
 .main-gap {

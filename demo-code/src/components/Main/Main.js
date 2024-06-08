@@ -277,19 +277,11 @@ const Main = ()=>{
                   return <div 
                     className='main-chip' 
                     style={{ background: chip.color, left: chip.start+'%', width: chip.width+'%' }} 
-                    key={chip.id}
-                    // track-id={track.id}
-                    // chip-id={chip.id}
-                    // is-chip='1'
-                    // draggable="true"
-                    // onDragStart={event => onDragStart(event, track.id, chip.id)}
-                    // onDragOver={event => onDragOver(event)}
+                    key={chip.id} 
                   >
                     <div 
-                      // draggable="true"
                       className='main-start-handle' 
                       style={{ width: handleWidth+'px' }}
-                      // onDragStarts={(event)=>{event.stopPropagation(); event.preventDefault()}} 
                       {...{
                         [isMainStartHandle]:'1',
                         [trackId]:track.id,
