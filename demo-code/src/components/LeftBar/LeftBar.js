@@ -27,7 +27,8 @@ const LeftBar = ({ onLeftBarDragStart })=>{
             onLeftBarDragStart(event, chip)
           }}
         >
-
+          <div>start: {chip.start}</div>
+          <div>width: {chip.width}%</div>
         </div>
       })
     }
