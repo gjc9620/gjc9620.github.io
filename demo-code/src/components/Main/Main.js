@@ -137,7 +137,8 @@ const Main = ()=>{
           //可优化为缓存 dom
           const $currTrack = document.querySelector(`*[is-track="1"][${trackId}="${currTrackId}"]`);
           const currTrackClientRect = $currTrack.getBoundingClientRect();
-          const nextWidthPerent = (right - event.pageX) / currTrackClientRect.width;
+          const nextWidthPerent = (right - event.pageX + handleWidth) / currTrackClientRect.width;
+          debugger
           const nextStartPercent = (event.pageX - currTrackClientRect.x) / currTrackClientRect.width; 
           const newTracks = tracks.map((t)=>{
             if(t.id === +currTrackId){
@@ -162,8 +163,7 @@ const Main = ()=>{
         return
       }
       if(handleDirection === 'end'){
-        const $currSizingChipEndHandle = document.querySelector(`*[${isMainEndHandle}="1"][${trackId}="${currTrackId}"][${chipId}="${currChipId}"]`);
-        if(event.pageX < x + handleWidth){
+        if(event.pageX - handleWidth <= x + handleWidth){
           return
         }else {
           const $currTrack = document.querySelector(`*[is-track="1"][${trackId}="${currTrackId}"]`);
@@ -208,7 +208,6 @@ const Main = ()=>{
   }
   
   const onLeftBarDragStart = (event, chip) => {
-    debugger
     event.dataTransfer.setData('dragInfo', JSON.stringify({ newChip: { ...chip, id: createId() } }));
   }
    
@@ -223,13 +222,11 @@ const Main = ()=>{
         const insertPosition = event.target.getAttribute('insert-position');
         const trackIndex = tracks.findIndex(t=>t.id === +trackId);
         const newId = createId();
-        debugger
         let newTrack = [...tracks];
         newTrack.splice(insertPosition === 'before'? trackIndex: trackIndex + 1, 0, {
           id: newId,
           chips: []
         });
-        debugger
         newTrack = moveChip(originChipId, originTrackId, newId, newChip, newTrack)
         setTrack(newTrack);
         return 
@@ -281,24 +278,29 @@ const Main = ()=>{
                     className='main-chip' 
                     style={{ background: chip.color, left: chip.start+'%', width: chip.width+'%' }} 
                     key={chip.id}
-                    track-id={track.id}
-                    chip-id={chip.id}
-                    is-chip='1'
-                    draggable="true"
-                    onDragStart={event => onDragStart(event, track.id, chip.id)}
+                    // track-id={track.id}
+                    // chip-id={chip.id}
+                    // is-chip='1'
+                    // draggable="true"
+                    // onDragStart={event => onDragStart(event, track.id, chip.id)}
                     // onDragOver={event => onDragOver(event)}
                   >
                     <div 
+                      // draggable="true"
                       className='main-start-handle' 
                       style={{ width: handleWidth+'px' }}
-                      onDragStarts={(event)=>event.preventDefault()} 
+                      // onDragStarts={(event)=>{event.stopPropagation(); event.preventDefault()}} 
                       {...{
                         [isMainStartHandle]:'1',
                         [trackId]:track.id,
                         [chipId]:chip.id,
                       }}
                     ></div>
-                    {/* <div className='main-content'></div> */}
+                    <div className='main-content' track-id={track.id}
+                    chip-id={chip.id}
+                    is-chip='1'
+                    draggable="true"
+                    onDragStart={event => onDragStart(event, track.id, chip.id)}></div>
                     <div 
                       className='main-end-handle' 
                       style={{ width: handleWidth+'px' }}

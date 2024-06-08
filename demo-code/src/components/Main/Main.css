@@ -43,18 +43,18 @@
   height: 100%;
   background-color: mediumaquamarine;
   cursor: col-resize;
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
 }
 
 .main-end-handle {
   cursor: col-resize;
   height: 100%;
   background-color: mediumaquamarine;
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  right: 0;
+  right: 0; */
 }
 
 .main-gap {
